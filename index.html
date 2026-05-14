@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistem Akses</title>
+    <title>Login E-Office BPS Kabupaten Lembata</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #0369a1 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -62,37 +62,7 @@
         .login-header p {
             color: #888;
             font-size: 14px;
-        }
-
-        /* Tab untuk user type */
-        .tab-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 14px 12px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 600;
-            color: #999;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .tab-btn.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-        }
-
-        .tab-btn:hover {
-            color: #667eea;
+            line-height: 1.5;
         }
 
         /* Form group */
@@ -122,16 +92,16 @@
         input[type="text"]:focus,
         input[type="password"]:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #0369a1;
             background: #f0f4ff;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 3px rgba(3, 105, 161, 0.1);
         }
 
         /* Tombol login */
         .login-btn {
             width: 100%;
             padding: 13px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #0369a1 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -140,12 +110,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 15px;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 5px 15px rgba(3, 105, 161, 0.3);
         }
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(3, 105, 161, 0.4);
         }
 
         .login-btn:active {
@@ -196,32 +166,13 @@
             width: 18px;
             height: 18px;
             cursor: pointer;
-            accent-color: #667eea;
+            accent-color: #0369a1;
         }
 
         .remember-me label {
             margin: 0;
             font-weight: normal;
             cursor: pointer;
-        }
-
-        /* Tab content */
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
         }
 
         /* Footer info */
@@ -263,7 +214,7 @@
             width: 12px;
             height: 12px;
             border: 2px solid #f3f3f3;
-            border-top: 2px solid #667eea;
+            border-top: 2px solid white;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             margin-left: 5px;
@@ -278,124 +229,63 @@
 <body>
     <div class="login-container">
         <div class="login-header">
-            <div class="logo">🔐</div>
-            <h1>Akses Sistem</h1>
-            <p>Silakan login untuk melanjutkan</p>
-        </div>
-
-        <div class="tab-buttons">
-            <button class="tab-btn active" onclick="switchTab('admin', event)">👨‍💼 Admin</button>
-            <button class="tab-btn" onclick="switchTab('pegawai', event)">👤 Pegawai</button>
+            <div class="logo">📊</div>
+            <h1>Portal E-Office</h1>
+            <p>Badan Pusat Statistik Kabupaten Lembata</p>
         </div>
 
         <div id="message" class="message"></div>
 
-        <!-- Tab Admin -->
-        <div id="admin-tab" class="tab-content active">
-            <form onsubmit="handleLogin(event, 'admin')">
-                <div class="form-group">
-                    <label for="admin-username">Username</label>
-                    <input type="text" id="admin-username" placeholder="Masukkan username admin" required>
-                </div>
-                <div class="form-group">
-                    <label for="admin-password">Password</label>
-                    <input type="password" id="admin-password" placeholder="Masukkan password" required>
-                </div>
-                <div class="remember-me">
-                    <input type="checkbox" id="admin-remember">
-                    <label for="admin-remember">Ingat saya</label>
-                </div>
-                <button type="submit" class="login-btn" id="admin-btn">
-                    LOGIN
-                </button>
-            </form>
-        </div>
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Masukkan username" required autofocus>
+            </div>
 
-        <!-- Tab Pegawai -->
-        <div id="pegawai-tab" class="tab-content">
-            <form onsubmit="handleLogin(event, 'pegawai')">
-                <div class="form-group">
-                    <label for="pegawai-username">Username</label>
-                    <input type="text" id="pegawai-username" placeholder="Masukkan username" required>
-                </div>
-                <div class="form-group">
-                    <label for="pegawai-password">Password</label>
-                    <input type="password" id="pegawai-password" placeholder="Masukkan password" required>
-                </div>
-                <div class="remember-me">
-                    <input type="checkbox" id="pegawai-remember">
-                    <label for="pegawai-remember">Ingat saya</label>
-                </div>
-                <button type="submit" class="login-btn" id="pegawai-btn">
-                    LOGIN
-                </button>
-            </form>
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Masukkan password" required>
+            </div>
+
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember">Ingat saya</label>
+            </div>
+
+            <button type="submit" class="login-btn" id="login-btn">
+                MASUK KE E-OFFICE
+            </button>
+        </form>
 
         <div class="footer-info">
-            Untuk pertanyaan, hubungi administrator
+            E-Office BPS Kabupaten Lembata - 2024
         </div>
     </div>
 
     <script>
         // ============================================
-        // DATA USER - EDIT DI SINI UNTUK TAMBAH PEGAWAI
+        // DATA USER CREDENTIALS
         // ============================================
-        const users = {
-            admin: [
-                { username: 'admin', password: 'paus5308' }
-            ],
-            pegawai: [
-                { username: 'budi', password: 'budi123' },
-                { username: 'siti', password: 'siti123' },
-                { username: 'rino', password: 'rino123' }
-                // TAMBAHKAN PEGAWAI BARU DI SINI
-                // { username: 'joko', password: 'joko123' },
-                // { username: 'dewi', password: 'dewi123' },
-            ]
+        const credentials = {
+            username: '5308',
+            password: 'paus5308'
         };
 
         // ============================================
-        // HALAMAN TUJUAN SETELAH LOGIN
+        // URL TUJUAN SETELAH LOGIN
         // ============================================
-        // Ganti URL dengan link Google Site Anda
-        const redirectUrls = {
-            admin: 'https://sites.google.com/view/e-officebpskabupatenlembata/beranda?authuser=0', // ← GANTI DENGAN GOOGLE SITE ADMIN
-            pegawai: 'https://sites.google.com/view/e-officebpskabupatenlembata/beranda?authuser=0' // ← GANTI DENGAN GOOGLE SITE PEGAWAI
-        };
+        // Ganti dengan URL E-Office BPS Kabupaten Lembata Anda
+        const eofficeURL = 'https://sites.google.com/view/e-officebpskabupatenlembata/beranda?authuser=0';
 
         // ============================================
-        // FUNCTIONS
+        // HANDLE LOGIN
         // ============================================
-
-        // Switch Tab
-        function switchTab(tab, event) {
-            event.preventDefault();
-            
-            // Hide semua tab
-            document.getElementById('admin-tab').classList.remove('active');
-            document.getElementById('pegawai-tab').classList.remove('active');
-
-            // Hapus active class dari semua button
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Show tab yang dipilih
-            document.getElementById(tab + '-tab').classList.add('active');
-            event.target.closest('.tab-btn').classList.add('active');
-
-            // Clear message
-            clearMessage();
-        }
-
-        // Handle Login
-        function handleLogin(event, userType) {
+        function handleLogin(event) {
             event.preventDefault();
 
-            const username = document.getElementById(userType + '-username').value.trim();
-            const password = document.getElementById(userType + '-password').value;
-            const button = document.getElementById(userType + '-btn');
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const button = document.getElementById('login-btn');
             const messageDiv = document.getElementById('message');
 
             // Disable button
@@ -403,27 +293,24 @@
             const originalText = button.textContent;
             button.innerHTML = 'LOADING<span class="loading"></span>';
 
-            // Simulasi delay (untuk UX yang lebih baik)
+            // Simulasi delay untuk UX yang lebih baik
             setTimeout(() => {
                 // Cek kredensial
-                const user = users[userType].find(u => u.username === username && u.password === password);
-
-                if (user) {
+                if (username === credentials.username && password === credentials.password) {
                     showMessage('✓ Login berhasil! Mengalihkan...', 'success');
                     button.textContent = 'SUKSES ✓';
 
                     // Simpan ke localStorage jika "Ingat saya" dicek
-                    if (document.getElementById(userType + '-remember').checked) {
+                    if (document.getElementById('remember').checked) {
                         localStorage.setItem('loggedInUser', JSON.stringify({
                             username: username,
-                            userType: userType,
                             timestamp: new Date().getTime()
                         }));
                     }
 
-                    // Redirect ke Google Site setelah 1.5 detik
+                    // Redirect ke E-Office setelah 1.5 detik
                     setTimeout(() => {
-                        window.location.href = redirectUrls[userType];
+                        window.location.href = eofficeURL;
                     }, 1500);
                 } else {
                     showMessage('✗ Username atau password salah!', 'error');
@@ -440,27 +327,21 @@
             messageDiv.className = 'message ' + type;
         }
 
-        // Clear Message
-        function clearMessage() {
+        // Clear message saat user mulai input
+        document.addEventListener('input', function() {
             document.getElementById('message').className = 'message';
             document.getElementById('message').textContent = '';
-        }
+        });
 
-        // Auto-login jika sudah tersimpan
+        // Auto-fill username jika sudah tersimpan
         window.addEventListener('load', function() {
             const savedUser = localStorage.getItem('loggedInUser');
             if (savedUser) {
-                const { username, userType } = JSON.parse(savedUser);
-                // Isi username otomatis
-                document.getElementById(userType + '-username').value = username;
-                // Switch ke tab yang sesuai
-                const tabBtn = document.querySelectorAll('.tab-btn')[userType === 'admin' ? 0 : 1];
-                switchTab(userType, { target: tabBtn, preventDefault: () => {} });
+                const { username } = JSON.parse(savedUser);
+                document.getElementById('username').value = username;
+                document.getElementById('password').focus();
             }
         });
-
-        // Clear message saat user mulai input
-        document.addEventListener('input', clearMessage);
     </script>
 </body>
 </html>
